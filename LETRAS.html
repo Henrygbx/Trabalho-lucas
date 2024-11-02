@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinações de Letras</title>
+</head>
+<body>
+
+    <h1>Combinações de Letras</h1>
+    <input type="text" id="lettersInput" maxlength="3" placeholder="Digite 3 letras">
+    <button onclick="generateCombinations()">Gerar Combinações</button>
+
+    <h2>Combinações:</h2>
+    <ul id="combinationsList"></ul>
+
+    <script>
+        function generateCombinations() {
+            const input = document.getElementById('lettersInput').value;
+            const combinationsList = document.getElementById('combinationsList');
+            combinationsList.innerHTML = '';
+
+            if (input.length !== 3) {
+                alert('Digite exatamente 3 letras.');
+                return;
+            }
+
+            const combinations = [];
+
+            function permute(prefix, str) {
+                if (str.length === 0) {
+                    combinations.push(prefix);
+                }
+                for (let i = 0; i < str.length; i++) {
+                    permute(prefix + str[i], str.slice(0, i) + str.slice(i + 1));
+                }
+            }
+
+            permute('', input);
+
+            combinations.forEach(combination => {
+                const li = document.createElement('li');
+                li.textContent = combination;
+                combinationsList.appendChild(li);
+            });
+        }
+    </script>
+
+</body>
+</html>

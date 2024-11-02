@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão Pequeno</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Altura da tela inteira */
+            background-color: #f0f0f0; /* Cor de fundo da página */
+            margin: 0; /* Remove margem padrão */
+        }
+
+        #meuBotao {
+            width: 4px; /* largura do botão reduzida em 80% */
+            height: 2px; /* altura do botão reduzida em 80% */
+            font-size: 8px; /* tamanho da fonte reduzido */
+            background-color: #4CAF50; /* cor de fundo */
+            color: white; /* cor do texto */
+            border: none; /* sem borda */
+            border-radius: 5px; /* bordas arredondadas */
+            cursor: pointer; /* cursor de ponteiro ao passar o mouse */
+            margin-top: 10px; /* espaço acima do botão */
+        }
+
+        #meuBotao:hover {
+            background-color: #45a049; /* cor de fundo ao passar o mouse */
+        }
+
+        #mensagem {
+            font-size: 29px; /* tamanho da fonte da mensagem aumentado em 80% */
+            margin-bottom: 10px; /* espaço abaixo da mensagem */
+        }
+    </style>
+</head>
+<body>
+
+    <p id="mensagem">Tente apertar o botão!</p> <!-- Mensagem acima do botão -->
+    <button id="meuBotao" onclick="verificarAcerto()">C</button>
+
+    <script>
+        function verificarAcerto() {
+            const acerto = Math.random() < 0.5; // Gera um número aleatório
+            if (acerto) {
+                document.getElementById("mensagem").innerText = "Sucesso!";
+            } else {
+                document.getElementById("mensagem").innerText = "Erro!";
+            }
+        }
+
+        // Adicionando evento para mostrar erro se não clicar no botão
+        document.body.addEventListener('click', function(event) {
+            const button = document.getElementById("meuBotao");
+            if (!button.contains(event.target)) {
+                document.getElementById("mensagem").innerText = "Erro! Você não clicou no botão.";
+            }
+        });
+    </script>
+
+</body>
+</html>
