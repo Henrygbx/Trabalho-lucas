@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substituir Linha por Zeros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Substituir Linha por Zeros em uma Matriz</h1>
+
+<label for="linhaInput">Escolha o número da linha para substituir por zeros (0 a 2):</label>
+<input type="number" id="linhaInput" min="0" max="2">
+<button id="substituirBtn">Substituir Linha por Zeros</button>
+
+<h2>Matriz Original:</h2>
+<pre id="matrizOriginal"></pre>
+
+<h2>Matriz Modificada:</h2>
+<pre id="matrizModificada"></pre>
+
+<script>
+    function substituirLinhaPorZeros(matriz, numLinha) {
+        if (numLinha >= 0 && numLinha < matriz.length) {
+            for (let i = 0; i < matriz[numLinha].length; i++) {
+                matriz[numLinha][i] = 0;
+            }
+        }
+        return matriz;
+    }
+
+    // Exemplo de uso
+    const matriz = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ];
+    
+    // Exibir matriz original
+    document.getElementById("matrizOriginal").innerText = JSON.stringify(matriz);
+
+    document.getElementById("substituirBtn").addEventListener("click", function() {
+        const numLinha = parseInt(document.getElementById("linhaInput").value); // Pega o valor do input
+        const matrizModificada = substituirLinhaPorZeros(matriz, numLinha);
+        
+        // Exibir matriz modificada
+        document.getElementById("matrizModificada").innerText = JSON.stringify(matrizModificada);
+    });
+</script>
+
+</body>
+</html>
